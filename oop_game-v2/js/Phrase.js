@@ -27,18 +27,23 @@ class Phrase {
 
     //checks to see if the letter selected by the player matches a letter in the phrase.
     checkLetter(letter) {
-        const keys = document.getElementsByClassName('key');
-        for(let j= 0; j < keys.length; j++){
-            if (keys[j].clicked = true && keys[j].textContent === letter) {
-                return true;
-            } else {
-                return false;
+        const letters = document.getElementsByClassName('letter');
+        for(let i = 0; i< letters.length; i++){
+            if(letters[i].innerHTML === letter){
+                return true
             }
         }
+        return false;
     }
 
     //reveals the letter(s) on the board that matches the player's selection.
     showMatchedLetter(letter) {
-        const 
+        if(this.checkLetter(letter)){
+            const matchedLetters = document.getElementsByClassName(letter);
+            for(let i =0; i< matchedLetters.length; i++){
+                matchedLetters[i].classList.remove('hide');
+                matchedLetters[i].classList.add('show');
+            }
+        }
     }
 }

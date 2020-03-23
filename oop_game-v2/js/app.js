@@ -9,7 +9,9 @@ document.getElementById('btn__reset').addEventListener('click', function(){
 });
 
 //add event listeners for the onscreen keyboard buttons
-//document.getElementById('qwerty').addEventListener('click', ()=>{});
+document.getElementById('qwerty').addEventListener('click', function(){
+    game.handleInteraction();
+});
 
 //test
 
