@@ -5,7 +5,8 @@ class Game {
     constructor(){
         this.missed = 0;
         this.phrases = this.createPhrases();
-        this.activePhrase = this.getRandomPhrase();
+        this.activePhrase = null;
+        this.gameStarted = false;
     }
     /**
     * Creates phrases for use in game
@@ -31,7 +32,10 @@ class Game {
     * Begins game by selecting a random phrase and displaying it to user
     */
     startGame() {
+        this.reset();
+        this.gameStarted = true;
         document.getElementById('overlay').style.display = 'none';
+        this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     };
 
@@ -61,7 +65,24 @@ class Game {
             this.gameOver(false);
         }
     };
-
+    //reset the board after game finished
+    reset(){
+        this.missed = 0;
+        document.getElementById('phrase').children[0].innerHTML = '';
+        const keyrows = document.getElementsByClassName('keyrow');
+        //const keys = document.getElementsByClassName('key');
+        for(let i = 0; i < keyrows.length; i++){
+            for(let j = 0; j < keyrows[i].children.length; j++){
+                keyrows[i].children[j].disabled = false;
+                keyrows[i].children[j].className = "key";
+        }}
+        const tries = document.getElementsByClassName('tries');
+        for(let i = 0; i < tries.length; i++){
+            tries[i].innerHTML = "<img src='images/liveHeart.png' alt='Lost Heart Icon' height='35' width='30'></img>"
+        }
+        document.getElementById('overlay').className = "start";
+       
+    }
     /**
     * Displays game over message
     * @param {boolean} gameWon - Whether or not the user won the game
@@ -70,9 +91,10 @@ class Game {
         const overlay = document.getElementById('overlay');
         overlay.style.display = 'block';
         const h1 = document.getElementsByTagName('h1')[0];
+        this.gameStarted = false;  
         if(gameWon){
             h1.textContent = "Great Job!"
-            overlay.classList.replace('start', 'win');   //potential probem 2
+            overlay.classList.replace('start', 'win');   
         } else {
             h1.textContent = "Sorry, better luck next time!"
             overlay.classList.replace('start', 'lose');
@@ -80,29 +102,21 @@ class Game {
     };
 
     handleInteraction(button) {
-        //The clicked/chosen letter must be captured.
-        //The clicked letter must be checked against the phrase for a match.
-        const keyboard = document.getElementById('qwerty');
-        keyboard.addEventListener('click', (e)=>{
-            //If there’s a match, the letter must be displayed on screen instead of the placeholder.
-            //If there’s no match, the game must remove a life from the scoreboard.
-            if(this.activePhrase.checkLetter(e.target.innerHTML)){
-                this.activePhrase.showMatchedLetter(e.target.innerHTML);
-            } else {
-                this.removeLife();
-            }
-        });
-        // problem 1
-        //The game should check if the player has won the game by revealing all of the letters in
-        //the phrase or if the game is lost because the player is out of lives.
-        //If the game is won or lost, a message should be displayed on screen.
-        if(this.checkForWin()){
-            this.gameOver(true);
-        } else if (this.missed == 5){
-            this.gameOver(false);
+        //Disable the selected letter’s onscreen keyboard button.
+        if (button.disabled){
+            return;
+        };
+        button.disabled = true;
+        if(this.activePhrase.checkLetter(button.innerHTML)){
+            this.activePhrase.showMatchedLetter(button.innerHTML);
+            button.classList.add('chosen');
+            if(this.checkForWin()){
+                this.gameOver(true);
+            };
+        } else {
+            button.classList.add('wrong');
+            this.removeLife();
         }
-        
     }
-
 
 }
