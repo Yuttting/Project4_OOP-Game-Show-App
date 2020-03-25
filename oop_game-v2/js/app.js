@@ -20,7 +20,7 @@ for(let i =0; i<keys.length; i++){
 addEventListener('keyup', function(e){
     if(game.gameStarted){
         for(let i =0; i<keys.length; i++){
-            if(e.key === keys[i].innerHTML){
+            if(e.key.toLowerCase() === keys[i].innerHTML){
                 keys[i].focus();
                 game.handleInteraction(keys[i]);
                 return;
