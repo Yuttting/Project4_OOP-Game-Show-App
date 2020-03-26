@@ -25,7 +25,7 @@ class Game {
     * @return {Object} Phrase object chosen to be used
     */
     getRandomPhrase() {
-        return this.phrases[Math.round(Math.random()*4)];
+        return this.phrases[Math.floor(Math.random()*5)];     //[0,5)
     };
     
     /**

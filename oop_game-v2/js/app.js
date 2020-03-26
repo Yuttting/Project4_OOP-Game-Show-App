@@ -26,11 +26,21 @@ addEventListener('keyup', function(e){
                 return;
             }
         };
-    } else {
-        //console.log(e.key);
-        if(e.key === ' ' || e.key === 'Enter'){
-            game.startGame();
-        }
+
+    //press Enter or spacebar could also start the game
+    // if(game.gameStarted){
+    //     for(let i =0; i<keys.length; i++){
+    //         if(e.key.toLowerCase() === keys[i].innerHTML){
+    //             keys[i].focus();
+    //             game.handleInteraction(keys[i]);
+    //             return;
+    //         }
+    //     };
+    // } else {
+    //     //console.log(e.key);
+    //     if(e.key === ' ' || e.key === 'Enter'){
+    //         game.startGame();
+    //     }
     }
     
 })
