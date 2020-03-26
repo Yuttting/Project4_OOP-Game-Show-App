@@ -4,5 +4,5 @@
  background color: #FBE8A6
  phrase box color: #B4DFE5
  headline color: #303C6C
- key box clor: #D2FDFF
+ key box color: #D2FDFF
  font: Palatino
