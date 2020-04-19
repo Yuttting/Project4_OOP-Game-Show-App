@@ -17,7 +17,23 @@ class Game {
                 new Phrase('Moonrise Kingdom'),
                 new Phrase('Joker'),
                 new Phrase('The Dark Knight'),
-                new Phrase('The Babadook')];
+                new Phrase('Tiger King'),
+                new Phrase('Bird Box'),
+                new Phrase('Bohemian Rhapsody'),
+                new Phrase('The Haunting of Hill House'),
+                new Phrase('A Simple Favor'),
+                new Phrase('The Silence of the Lambs'),
+                new Phrase('Love Actually'),
+                new Phrase('Under the Tuscan Sun'),
+                new Phrase('My Fair Lady'),
+                new Phrase('The Tourist'),
+                new Phrase('The Sound of Music'),
+                new Phrase('Titanic'),
+                new Phrase('Dead Poets Society'),
+                new Phrase('Pirates of the Caribbean'),
+                new Phrase('Finding Nemo'),
+                new Phrase('Black Swan'),
+            ];
     };
 
     /**
@@ -25,7 +41,7 @@ class Game {
     * @return {Object} Phrase object chosen to be used
     */
     getRandomPhrase() {
-        return this.phrases[Math.floor(Math.random()*5)];     //[0,5)
+        return this.phrases[Math.floor(Math.random()*20)];     
     };
     
     /**
